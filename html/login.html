@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>登录-Higo-嗨购商城</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../images/favicon.ico">
+  <link rel="stylesheet" href="../css/main.css">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    #top a{
+      color: #FFF;
+      width: 300px;
+      text-indent: 120px;
+      font: 26px/59px Microsoft Yahei,sans-serif;
+    }
+    #login-panel {
+      position: relative;
+      overflow: hidden;
+      width: 300px;
+      height: 300px;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      -webkit-box-shadow: 0 0 10px rgba(100,100,100,0.5);
+      box-shadow: 0 0 10px rgba(100,100,100,0.5);
+      padding: 20px;
+    }
+    #login-panel>h3 {
+      display: inline-block;
+      font: 20px/30px bold;
+      color: #333;
+    }
+    #login-panel>a.to_signup {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: block;
+      padding: 40px 40px 5px 40px;
+      background: #ff8800;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      -webkit-transform: rotate(45deg) translate(20px,-50px);
+      -ms-transform: rotate(45deg) translate(20px,-50px);
+      -o-transform: rotate(45deg) translate(20px,-50px);
+      transform: rotate(45deg) translate(20px,-50px);
+    }
+    #login-panel form {
+      margin-top: 10px;
+    }
+    #login-panel p {
+      display: block;
+      overflow: hidden;
+      height: 42px;
+      line-height: 40px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+    }
+    #login-panel p.test {
+      visibility: hidden;
+      height: 24px;
+      margin-bottom: 10px;
+      line-height: 24px;
+      text-indent: 1em;
+      background: #FF6666;
+      border: none;
+      color: #fff;
+    }
+    #login-panel label {
+      display: inline-block;
+      height: 100%;
+      width: 40px;
+      border-right: 1px solid #ccc;
+      vertical-align: middle;
+      background: url(../images/login.png) no-repeat;
+    }
+    #login-panel input {
+      width: 247px;
+      font-size: 16px;
+      outline: none;
+      padding: 0 5px;
+      margin-right: -10px;
+      color: #333;
+      vertical-align: middle;
+    }
+    #login-panel .clrtxt {
+      display: none;
+      padding: 2px;
+      margin-left: -10px;
+      background: #666;
+      border-radius: 50% 50%;
+      text-align: center;
+      color: #fff;
+    }
+    #login-panel a.forget {
+      float: right;
+      text-decoration: none;
+      color: #333;
+      font-size: 12px;
+      position: relative;
+      top: -10px;
+    }
+    #login-panel button {
+      width: 100%;
+      height: 40px;
+      margin-top: 10px;
+      background: #DD1010;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- 页眉 -->
+  <div class="top" id="top">
+      <a class="logo" href="index.html"> Higo-嗨购商城 </a>
+  </div>
+  <!-- 登录界面 -->
+  <div id="login-panel">
+    <h3>账户登录</h3>
+    <a href="signup.html" class="to_signup">注册</a>
+    <form action="" method="post">
+      <p class="test">这是验证信息</p>
+      <p><label for="username" style="background-position:-40px 0;"></label><input type="text" id="username" placeholder="会员名/邮箱/手机号"><span class="clrtxt">×</span></p>
+      <p><label for="password"></label><input type="password" id="password"></p>
+    </form>
+    <a href="" class="forget">忘记密码？</a>
+    <button class="login">登 录</button>
+  </div>
+  <!-- 页脚 -->
+  <div class="footer" style="position:fixed;bottom:0;width:100%;">
+    <p>
+      <a href="">嗨购简介 |</a>
+      <a href="">嗨购公告 |</a>
+      <a href="">招贤纳士 |</a>
+      <a href="">联系我们 |</a>
+      客服热线：400-675-1234
+    </p>
+    <p class="copyright">
+      Copyright &copy; 2006 - 2014 嗨购版权所有   京ICP备09037834号   京ICP证B1034-8373号   某市公安局XX分局备案编号：123456789123
+    </p>
+  </div>
+  <script>
+    $(function(){
+      var user = $("input#username");
+      var psw = $("input#password");
+      // 清除文本
+      $("span.clrtxt").bind('click', function(event) {
+          $(this).hide();
+          user.val('');
+      });
+      user.keyup(function(event){
+        if($.trim($(this).val())){
+          $("span.clrtxt").show();
+        }else{
+          $("span.clrtxt").hide();
+        }
+      });
+      // 表单验证
+      $("button.login").click(function(event){
+        var reg1 = /^[a-zA-Z0-9_-]{4,16}$/,
+        reg2 = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+        reg3 = /^1[34578]\d{9}$/;
+
+        var test = '';
+        var u,p;
+        if($.trim(user.val()) && (reg1.test(user.val()) || reg2.test(user.val()) || reg3.test(user.val()))){
+          u = true;
+          user.closest('p').css("border-color","#04C500");
+        }else{
+          u = false;
+          user.closest('p').css("border-color","#CC0000");
+        };
+        if($.trim(psw.val())){
+          p = true;
+          psw.closest('p').css("border-color","#04C500");
+        }else{
+          p = false;
+          psw.closest('p').css("border-color","#CC0000");
+        }
+
+        if(u && p){
+          $("p.test").css("visibility","hidden");
+        }else{
+          if(!u && p){
+            test = "请输入合法的用户名";
+          }else if(u && !p){
+            test = "输入的密码不正确";
+          }else{
+            test = "请输入用户名和密码"
+          }
+          $("p.test").css("visibility","visible").text(test);
+        }
+      });
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Higo-嗨购商城</title>
+	<link rel="icon" href="../images/favicon.ico">
+	<link rel="stylesheet" href="../css/main.css">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script src=../js/main.js></script>
+</head>
+<body style="	min-width: 1000px;">
+	<!-- 顶部页眉 -->
+	<div class="header" id="header">
+		<div class="center">
+			<span class="setfav">收藏商城</span>
+			<div class="login">
+				<span>欢迎来到 Higo-嗨购商城！</span>
+				<a href="login.html">[登录]</a>
+				<a href="signup.html">[免费注册]</a>
+			</div>
+		</div>
+	</div>
+	<!-- 标题栏 -->
+	<div class="top" id="top">
+		<div class="center">
+			<a class="logo" href="index.html"></a>
+			<div class="deal-process">
+				<div class="step-num"><h5 class="done">1</h5><p>我的购物车</p></div>
+				<div class="hr done"></div>
+				<div class="step-num"><h5 class="done">2</h5><p>填写核对订单</p></div>
+				<div class="hr done"></div>
+				<div class="step-num"><h5>3</h5><p>订单提交成功</p></div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容区 -->
+	<div class="content center clearfix" id="content">
+		<!-- 收货 -->
+		<div class="deal-table">
+			<div class="dt-title"><h2>收货信息</h2></div>
+			<div class="dt-content">
+				<div class="dt-option">
+					<table class="delivery deal-order">
+						<tr>
+							<th><span>*</span>&nbsp;选择地区：</th>
+							<td id="destination">
+								<select name="province" id="province">
+									<option value="请选择">请选择</option>
+								</select>
+								<select name="city" id="city">
+									<option value="请选择">请选择</option>
+								</select>
+								<select name="town" id="town">
+									<option value="请选择">请选择</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th><span>*</span>&nbsp;详细地址：</th>
+							<td><input type="text" placeholder="最多输入26个汉字" class="de-address" style="width:190px;"></td>
+						</tr>
+						<tr>
+							<th><span>*</span>&nbsp;收 货 人：</th>
+							<td><input type="text" placeholder="最多10个汉字" class="de-receiver" style="width:90px;"></td>
+						</tr>
+						<tr>
+							<th><span>*</span>&nbsp;手&nbsp;&nbsp;机：</th>
+							<td><input type="text" placeholder="如13452826765" class="de-phone" style="width:90px;">&nbsp;或固定电话：<input type="text" placeholder="区号" class="de-areacode" style="width:40px;">-<input type="text" placeholder="电话号码" class="de-tel" style="width:90px;">-<input type="text" placeholder="分机号（可选）" class="de-subtel" style="width:40px;"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- 支付 -->
+		<div class="deal-table">
+			<div class="dt-title"><h2>支付方式</h2></div>
+			<div class="dt-content">
+				<div class="dt-option">
+					<form class="pay-method deal-order">
+						<input type="radio" name="pay" class="bywechat" checked="checked">微信支付
+							<span><img src="../images/wechat.jpg" alt="" style="vertical-align:middle;margin:0.5em;">用微信扫一扫就能支付</span>
+						<br/>
+						<input type="radio" name="pay" class="bywechat">货到付款<span>送货上门后再付款，使用现金或刷银行卡</span>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- 发票 -->
+		<div class="deal-table">
+			<div class="dt-title"><h2>发票信息</h2></div>
+			<div class="dt-content">
+				<div class="dt-option">
+					<table class="invoice deal-order">
+						<tr>
+							<th><input type="checkbox" name="need">需要发票</th>
+						</tr>
+						<tr>
+							<th><span>*</span>&nbsp;发票类型：</th>
+							<td><select name="invoice-type" id="">
+								<option value="商业发票">商业发票</option>
+								<option value="个人发票">个人发票</option>
+							</select></td>
+						</tr>
+						<tr>
+							<th><span>*</span>&nbsp;发票抬头：</th>
+							<td><select name="invoice-title" id="">
+								<option value="公司">公司</option>
+								<option value="个人">个人</option>
+							</select><input type="text" style="width:90px;"></td>
+						</tr>
+					</table>
+					<button class="save-btn">保存</button><button class="cancel-btn">取消</button>
+				</div>
+			</div>
+		</div>
+		<!-- 商品信息 -->
+		<div class="deal-table">
+			<div class="dt-title"><h2>商品信息</h2><a href="">返回购物车修改</a></div>
+			<div class="dt-content">
+				<table class="shop-list" cellspacing="0">
+					<tr class="shop-list-title">
+						<th style="width:120px;">商品名称</th>
+						<th style="width:350px;"></th>
+						<th style="width:135px;">单价</th>
+						<th style="width:135px;">返现</th>
+						<th style="width:130px;">数量</th>
+						<th style="width:130px;">小计</th>
+					</tr>
+					<tr>
+						<td rowspan="2"><img src="../images/shop1.png" alt=""></td>
+						<td style="text-align:left;"><a href="" class="goods-name">Hisense 海信 BCD-202D 202升 三门冰箱 （银色）</a></td>
+						<td>¥1455.00</td>
+						<td>¥0.00</td>
+						<td>1</td>
+						<td style="color:#F00;font-weight:bold;">¥1455.00</td>
+					</tr>
+					<tr>
+						<td style="text-align:left;"><span>[赠品]&nbsp;</span><a href="" class="gifts-name">保鲜盒 真空保鲜盒-海信冰洗赠品</a></td>
+						<td></td>
+						<td></td>
+						<td>1</td>
+						<td style="color:#F00;font-weight:bold;">¥1455.00</td>
+					</tr>
+				</table>
+				<div class="dt-option">
+					<div class="info-check deal-order">
+						<a href="" class="feedback">若有任何意见，请在此留言</a>
+						<div class="shop-error clearfix">
+							<div class="error-reason">抱歉，以下商品暂时不能购买，已帮您自动在本次结算中剔除并扣减对应金额，您可以另行选择其他商品。</div>
+							<img src="../images/error1.png" alt="">
+							<h5>清风 欧园系列 清香型 100抽3...</h5>
+							<p>数量：1件</p>
+							<p>¥4.90<span>（无货）</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 提交订单 -->
+		<div class="deal-table">
+			<div class="dt-title"><h2>提交订单</h2></div>
+			<div class="dt-content">
+				<div class="dt-option">
+					<div class="check-order deal-order">
+						<h5>总计：<span class="total-price">¥1459.00</span></h5>
+						<button class="submit-order">提交订单</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 页脚 -->
+	<div class="footer">
+		<p>
+			<a href="">嗨购简介 |</a>
+			<a href="">嗨购公告 |</a>
+			<a href="">招贤纳士 |</a>
+			<a href="">联系我们 |</a>
+			客服热线：400-675-1234
+		</p>
+		<p class="copyright">
+			Copyright &copy; 2006 - 2014 嗨购版权所有   京ICP备09037834号   京ICP证B1034-8373号   某市公安局XX分局备案编号：123456789123
+		</p>
+		<p class="certification">
+			<img src="../images/certification.png" alt="">
+			<img src="../images/certification.png" alt="">
+			<img src="../images/certification.png" alt="">
+			<img src="../images/certification.png" alt="">
+		</p>
+	</div>
+	<!-- <div class="alert-box" id="alert-box">
+		<div class="alertbox-bg"></div>
+		<div class="close-box">×</div>
+		<div class="login-box showup">
+			<div class="username-text">
+				<label for="username-text">邮箱/用户名/以验证手机</label><br/>
+				<input type="text" name="username-text">
+			</div>
+			<div class="password-text">
+				<label for="">请输入密码</label><br/>
+				<input type="text" name="">
+			</div>
+			<div class="login-option">
+				<input type="checkbox">自动登录&nbsp;<input type="checkbox">安全控件登录&nbsp;<a href="">忘记密码？</a>
+			</div>
+			<button class="login-btn btn-submit">登 录</button>
+			<div class="other-option">
+				<p>使用合作网站账号登录：</p>
+				<ul class="friend-site">
+					<li><a href="">QQ</a></li>
+					<li><a href="">网易</a></li>
+					<li><a href="">人人</a></li>
+					<li><a href="">奇虎360</a></li>
+					<li><a href="">开心</a></li>
+					<li><a href="">豆瓣</a></li>
+					<li><a href="">搜狐</a></li>
+					<span class="other-site">更多</span>
+				</ul>
+			</div>
+			<button class="register-btn">免费注册&gt;&gt;</button>
+		</div>
+	</div> -->
+	<!-- 网站导航 -->
+	<div id="demo-list">
+		<h3>本站导航<span class="label"></span></h3>
+		<ul>
+			<li><a href="index.html">商城首页</a></li>
+			<li><a href="classification.html">商品分类</a></li>
+			<li><a href="sub-classify-page.html">单一类目</a></li>
+			<li><a href="detail-comments.html">商品详情</a></li>
+			<li><a href="deal-page.html">订单确认</a></li>
+			<li><a href="login.html">登录/注册</a></li>
+		</ul>
+	</div>
+	<!-- 地址选择 -->
+	<script src="../js/area.js"></script>
+	<script src="../js/area-select.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>注册-Higo-嗨购商城</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" href="../images/favicon.ico">
+  <link rel="stylesheet" href="../css/main.css">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <style>
+    #top a{
+      color: #FFF;
+      width: 300px;
+      text-indent: 120px;
+      font: 26px/59px Microsoft Yahei,sans-serif;
+    }
+    #top h3 {
+      display: inline-block;
+      float: right;
+      margin-right: 100px;
+      font: 20px/86px bold;
+      color: #fff;
+    }
+    .register{
+      width: 600px;
+      border: 1px solid #ccc;
+      border-top: none;
+      margin: 0 auto;
+      padding: 10px;
+      -webkit-box-shadow: 0 0 10px #ccc;
+      box-shadow: 0 6px 6px #ccc;
+    }
+    .register th{
+      font-size: 14px;
+      text-align: right;
+      width: 140px;
+    }
+    .register th>span{
+      margin-right: 0.5em;
+      color: #F00;
+    }
+    .register td{
+      text-align: left;
+      padding: 15px 10px;
+    }
+    .register input[type=text], .password-input{
+      font-size: 14px;
+      width: 280px;
+      height: 40px;
+      border: 1px solid #CCC;
+      padding: 0 20px 0 10px;
+    }
+    .password-input {
+      background: url(../images/password-input.png) no-repeat 280px 50%;
+    }
+    .agreement+a{
+      color: #00F;
+    }
+    .btn-submit{
+      display: block;
+      background: #ff8800;
+      width: 310px;
+      height: 36px;
+      line-height: 36px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      font-family: 微软雅黑;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- 页眉 -->
+  <div class="top" id="top">
+    <a class="logo" href="index.html"> Higo-嗨购商城 </a>
+    <h3>新用户注册</h3>
+  </div>
+  <div class="register">
+    <table>
+      <tr>
+        <th><span>*</span>账户名：</th>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <th><span>*</span>请设置密码：</th>
+        <td><input type="password" class="password-input"></td>
+      </tr>
+      <tr>
+        <th><span>*</span>请确认密码：</th>
+        <td><input type="password" class="password-input"></td>
+      </tr>
+      <tr>
+        <th><span>*</span>邮箱：</th>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <th><span>*</span>地址：</th>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td><input type="checkbox" class="agreement">我已阅读并同意<a href="">《用户注册协议》</a></td>
+      </tr>
+    </table>
+    <button class="register-submit btn-submit">提 交</button>
+  </div>
+</body>
+</html>

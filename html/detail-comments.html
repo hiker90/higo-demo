@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Higo-嗨购商城</title>
+	<link rel="icon" href="../images/favicon.ico">
+	<link rel="stylesheet" href="../css/smoothproducts.css">
+	<link rel="stylesheet" href="../css/main.css">
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <!-- 放大镜 -->
+  <script src="../js/smoothproducts.min.js"></script>
+
+	<style>
+	/*弹窗*/
+		#higo-modal-mask {
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			background-color: rgb(45, 45, 45);
+			z-index: 4000;
+			opacity: 0.2;
+			display: none;
+		}
+		#higo-modal {
+			position: fixed;
+			z-index: 7000;
+			left: 50%;
+			top: 50%;
+			-webkit-box-shadow: 0px 5px 10px #505050;
+			box-shadow: 0px 5px 10px #505050;
+		}
+		#higo-modal-title {
+			height: 30px;
+			font-size: 14px;
+			text-indent: 2em;
+			line-height: 30px;
+			background: #1d7ad9 url(../images/star.png) no-repeat 10px center;
+			color: #FFFFFF;
+			font-weight: bold;
+		}
+		#higo-modal-content {
+			padding: 20px 30px;
+		}
+		#higo-modal-content>p{
+			font-size: 14px;
+		}
+		#higo-btn {
+			position: absolute;
+			bottom: 20px;
+			right: 40px;
+		}
+		#higo-confirm, #higo-cancel {
+			display: inline-block;
+			padding: 5px 15px;
+			background: #ff8800;
+			margin-right: 10px;
+			color: #fff;
+		}
+	</style>
+</head>
+<body style="background-color: #F0F0F0;min-width: 1000px;">
+	<!-- 顶部页眉 -->
+	<div class="header" id="header">
+		<div class="center">
+			<span class="setfav">收藏商城</span>
+			<div class="login">
+				<span>欢迎来到 Higo-嗨购商城！</span>
+				<a href="login.html">[登录]</a>
+				<a href="signup.html">[免费注册]</a>
+			</div>
+		</div>
+	</div>
+	<!-- 标题栏 -->
+	<div class="top" id="top">
+		<div class="center">
+			<a class="logo" href="index.html"></a>
+			<form action="#" class="search">
+				<input type="text" placeholder="请输入商品名称">
+				<button>搜 索</button>
+			</form>
+			<div class="shopping-car clearfix">
+				<div class="left">购物车</div>
+				<div class="right">0</div>
+				<div class="basket">
+					<p>！购物车是空的……</p>
+					<ul></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 顶部导航 -->
+	<div class="menu clearfix ">
+		<div class="center">
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li><a href="" class="menu-active">数码城</a></li>
+				<li><a href="">天黑黑</a></li>
+				<li><a href="">团购</a></li>
+				<li><a href="">发现</a></li>
+				<li><a href="">二手特卖</a></li>
+				<li><a href="">名品汇</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="content center clearfix" id="content">
+		<!-- 面包屑导航 -->
+		<div class="breadcrumb"><a href="" style="font-weight:bold;">首页</a>&gt;<a href="">数码产品</a>&gt;<a href="">平板电脑</a>&gt;<a href="">Apple</a>&gt;<a href="">MD532CH/A</a></div>
+		<div class="main-detail clearfix">
+			<!-- 图片展示 放大镜 -->
+			<div class="pic-show">
+				<div class="sp-loading"><img src="images/loading.gif" /><br>加载中...</div>
+				<div class="pic-wrap sp-wrap">
+					<a href="../images/big-show.png"><img src="../images/small-show.png" class="small-show" /></a><a href="../images/big-show.png"><img src="../images/small-show.png" class="small-show" /></a><a href="../images/big-show.png"><img src="../images/small-show.png" class="small-show" /></a><a href="../images/big-show.png"><img src="../images/small-show.png" class="small-show" /></a><a href="../images/big-show.png"><img src="../images/small-show.png" class="small-show" /></a>
+					</div>
+			</div>
+			<!-- 主要信息 -->
+			<div class="main-info">
+				<div class="info-title">
+					<h1>Apple 苹果 iPad mini 平板电脑</h1>
+					<table>
+						<tr>
+							<th>嗨购价</th>
+							<td style="color:#DE2F2F;">¥<strong class="price" style="font-size:22px;font-weight:bold;">1999.00</strong></td>
+						</tr>
+						<tr>
+							<th>优惠</th>
+							<td class="forsale"><span>满意购</span>购ipad加价优惠够配件或USB充电插座</td>
+						</tr>
+					</table>
+				</div>
+				<div class="char-select">
+					<table>
+						<tr>
+							<th>送到</th>
+							<td id="destination">
+								<select name="province" id="province">
+									<option value="请选择">请选择</option>
+								</select>
+								<select name="city" id="city">
+									<option value="请选择">请选择</option>
+								</select>
+								<select name="town" id="town">
+									<option value="请选择">请选择</option>
+								</select>
+								有货，可当日出库
+							</td>
+						</tr>
+						<tr>
+							<th>选择颜色</th>
+							<td>
+								<ul class="select-color">
+									<li class="selected">白色</li>
+									<li>黑色</li>
+									<li>灰色</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th>选择规格</th>
+							<td>
+								<ul class="select-style">
+									<li class="selected">WIFI 16G</li>
+									<li>WIFI 32G</li>
+									<li>WIFI Cellular 16G</li>
+									<li>WIFI Cellular 32G</li>
+									<li>WIFI Cellular 64G</li>
+									<li>WIFI Cellular 128G</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th>数量</th>
+							<td>
+								<div class="select-num"><button>-</button><input type="text" value="1"><button>+</button></div>
+								限购<span class="num-limit">9</span>件
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="buy">
+					已选择 “<span class="char-selected"></span>”
+					<ul class="buy-btn clearfix">
+						<li style="border-right:1px solid #D9D9D9;"><button id="tobuy">加入购物车</button></li>
+						<li><a href="deal-page.html" id="buy">立即购买</a></li>
+					</ul>
+					<i>注意：此商品可提供普通发票，不提供增值税发票。</i>
+				</div>
+			</div>
+		</div>
+		<div class="leftside">
+			<div class="recommend">
+				<div class="rec-title">同价位</div>
+				<ul class="rec-content">
+					<li class="rec-table"><a href="">
+							<img src="../images/rec1-1.png" alt="">
+							<h4>Samsung 三星 GALAXY Tab 3 8.0 WLAN版本 T310平板电话</h4>
+							<strong>¥3588.00</strong>
+						</a></li>
+					<li class="rec-table"><a href="">
+							<img src="../images/rec1-1.png" alt="">
+							<h4>Samsung 三星 GALAXY Tab 3 8.0 WLAN版本 T310平板电话</h4>
+							<strong>¥3588.00</strong>
+						</a></li>
+					<li class="rec-table"><a href="">
+							<img src="../images/rec1-1.png" alt="">
+							<h4>Samsung 三星 GALAXY Tab 3 8.0 WLAN版本 T310平板电话</h4>
+							<strong>¥3588.00</strong>
+						</a></li>
+					<li class="rec-table"><a href="">
+							<img src="../images/rec1-1.png" alt="">
+							<h4>Samsung 三星 GALAXY Tab 3 8.0 WLAN版本 T310平板电话</h4>
+							<strong>¥3588.00</strong>
+						</a></li>
+				</ul>
+			</div>
+			<div class="recommend">
+				<div class="rec-title">看了最终买</div>
+				<ul class="rec-content">
+					<li class="rec-table"><a href="">
+							<img src="../images/rec1-1.png" alt="">
+							<h4>Samsung 三星 GALAXY Tab 3 8.0 WLAN版本 T310平板电话</h4>
+							<strong>¥3588.00</strong>
+						</a></li>
+					<li class="rec-table"><a href="">
+							<img src="../images/rec1-1.png" alt="">
+							<h4>Samsung 三星 GALAXY Tab 3 8.0 WLAN版本 T310平板电话</h4>
+							<strong>¥3588.00</strong>
+						</a></li>
+					<li class="rec-table"><a href="">
+							<img src="../images/rec1-1.png" alt="">
+							<h4>Samsung 三星 GALAXY Tab 3 8.0 WLAN版本 T310平板电话</h4>
+							<strong>¥3588.00</strong>
+						</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- 商品介绍 / 评论区 -->
+		<div class="rightside">
+			<div class="section-table">
+				<div class="section-table-title">
+					<div class="tab-title main-intro active"><a href="#"><span class="label"></span>产品介绍</a></div>
+					<div class="tab-title main-comments"><a href=""><span class="label"></span>商品评价（<span>4735</span>）</a></div>
+				</div>
+				<div class="intro-table">
+					<div class="pro-banner"><a href=""><img src="../images/pro-banner.jpg" alt=""></a></div>
+					<div class="intro">
+						<div class="intro-title">
+							<h2>强烈推荐</h2>货比三家，还选
+						</div>
+						<p class="intro-content">现在就是买mini的好时候！换代清仓直降，但苹果品质不变！A5双核，内置Lightning闪电接口，正反可插，方便人性。小身材，炫丽的7.9英寸显示屏，7.2mm的厚度，薄如铅笔。女生包包随身携带更时尚！facetime视频通话，与密友24小时畅聊不断线。微信倾力打造，你的智能助理。苹果的牌子就不用我说了，1111补仓，存货不多哦！</p>
+					</div>
+					<div class="intro">
+						<div class="intro-title">
+							<h2>精美图片</h2>
+						</div>
+						<p class="intro-content">苹果iPad7.9 英寸显示屏可带来新的iPad体验，绚丽的显示屏，在每一寸画面中呈现灵动鲜活的美妙影像。
+苹果miniMD528CH/A采用500 万像素 iSight 摄像头，清晰记录每一次的幸福。</p>
+					</div>
+					<img src="../images/product-pic.gif" alt="" class="product-pic">
+				</div>
+				<div class="comments-content">
+					<div class="com-degree">
+						<h3>商品评价</h3>
+						<dl>
+							<dt><span>4.7</span>分</dt>
+							<dd>
+								<ul class="degree-range"><span class="com-num">4.7</span>
+									<li>非常不满意</li>
+									<li>不满意</li>
+									<li>一般</li>
+									<li>满意</li>
+									<li>非常满意</li>
+								</ul><p>共<span>18939</span>位嗨购网友参与评分</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="com-cls-title">
+						<ul>
+							<li><a href="" class="active">全部</a></li>
+							<li><a href="">满意（<span>234</span>）</a></li>
+							<li><a href="">一般（<span>24</span>）</a></li>
+							<li><a href="">不满意（<span>234</span>）</a></li>
+						</ul>
+						<div class="com-sort">
+							<div class="bytime">时间排序</div>
+							<div class="byrec">推荐排序<span></span></div>
+						</div>
+					</div>
+					<div class="com-cls-cotent">
+						<table>
+							<tr class="eachcom">
+								<td class="com-user"><a href=""><img src="../images/userpic.gif" alt=""><h4 class="username">12344555</h4><p class="user-degree">金牌会员</p></a></td>
+								<td class="eachcom-table">
+									<ul>
+										<li>
+											<div class="comments">
+									<span></span><span></span><span></span><span></span><span></span><b class="eachcom-degree">&nbsp;5分&nbsp;满意</b>
+											</div>
+										</li>
+										<li class="eachcom-content">挺不错的，信赖嗨购。</li>
+										<li><div class="vote">顶（<span class="pro">5</span>）&nbsp;踩（<span class="con">4</span>）</div></li>
+									</ul>
+								</td>
+								<td class="time">2014-03-07 17:41:41</td>
+							</tr>
+							<tr class="eachcom">
+								<td class="com-user"><a href=""><img src="../images/userpic.gif" alt="" class="userpic"><h4 class="username">12344555</h4><p class="user-degree">金牌会员</p></a></td>
+								<td class="eachcom-table">
+									<ul>
+										<li>
+											<div class="comments">
+									<span></span><span></span><span></span><span></span><span></span><b class="eachcom-degree">&nbsp;5分&nbsp;满意</b>
+											</div>
+										</li>
+										<li class="eachcom-content">挺不错的，信赖嗨购。</li>
+										<li><div class="vote">顶（<span class="pro">5</span>）&nbsp;踩（<span class="con">4</span>）</div></li>
+									</ul>
+								</td>
+								<td class="com-time">2014-03-07 17:41:41</td>
+							</tr>
+							<tr class="eachcom">
+								<td class="com-user"><a href=""><img src="../images/userpic.gif" alt=""><h4 class="username">12344555</h4><p class="user-degree">金牌会员</p></a></td>
+								<td class="eachcom-table">
+									<ul>
+										<li>
+											<div class="comments">
+									<span></span><span></span><span></span><span></span><span></span><b class="eachcom-degree">&nbsp;5分&nbsp;满意</b>
+											</div>
+										</li>
+										<li class="eachcom-content">挺不错的，信赖嗨购。</li>
+										<li><div class="vote">顶（<span class="pro">5</span>）&nbsp;踩（<span class="con">4</span>）</div></li>
+									</ul>
+								</td>
+								<td class="time">2014-03-07 17:41:41</td>
+							</tr>
+							<tr class="eachcom">
+								<td class="com-user"><a href=""><img src="../images/userpic.gif" alt="" class="userpic"><h4 class="username">12344555</h4><p class="user-degree">金牌会员</p></a></td>
+								<td class="eachcom-table">
+									<ul>
+										<li>
+											<div class="comments">
+									<span></span><span></span><span></span><span></span><span></span><b class="eachcom-degree">&nbsp;5分&nbsp;满意</b>
+											</div>
+										</li>
+										<li class="eachcom-content">挺不错的，信赖嗨购。</li>
+										<li><div class="vote">顶（<span class="pro">5</span>）&nbsp;踩（<span class="con">4</span>）</div></li>
+									</ul>
+								</td>
+								<td class="com-time">2014-03-07 17:41:41</td>
+							</tr>
+						</table>
+						<div class="goto-pages">
+					<a href="" class="useless">上一页</a><a href="" class="cur">1</a><a href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a><span style="font-weight:bold;margin:0 5px;">...</span><a href=""><span class="total-pages">200</span></a><a href="">下一页</a>&nbsp;到第<input type="text" value="1">页<button>确定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 咨询区 -->
+			<div class="consult">
+				<div class="consult-title">
+					<div>全部咨询（<span>734</span>）</div>
+					<a href="">发表咨询</a>
+				</div>
+				<div class="consult-content">
+					<div class="alert">提示:因厂家更改产品包装、产地或者更换随机附件等没有任何提前通知，且每位咨询者购买情况、提问时间等不同，为此以下回复信息仅供参考！若由此给您带来不便请多多谅解，谢谢！</div>
+					<div class="each-consult clearfix">
+						<div class="sonsult-user">
+							<a href="">
+								<img src="../images/consult-user.gif" alt="" class="userpic">
+								<h4 class="username">6543383</h4>
+								<p class="user-degree">银牌会员</p>
+							</a>
+						</div>
+						<div class="eachconsult-content"><b>[商品咨询]</b><p>还能在便宜点吗?</p></div>
+						<div class="time">2014-03-07 17:41:41</div>
+						<div class="reply">嗨购网回复：<span class="reply-content">您好，现在已经是活动价格了</span></div>
+					</div>
+					<div class="each-consult  clearfix">
+						<div class="sonsult-user">
+							<a href="">
+								<img src="../images/consult-user.gif" alt="" class="userpic">
+								<h4 class="username">6543383</h4>
+								<p class="user-degree">银牌会员</p>
+							</a>
+						</div>
+						<div class="eachconsult-content"><b>[商品咨询]</b><p>还能在便宜点吗?</p></div>
+						<div class="time">2014-03-07 17:41:41</div>
+						<div class="reply">嗨购网回复：<span class="reply-content">您好，现在已经是活动价格了</span></div>
+					</div>
+					<div class="each-consult  clearfix">
+						<div class="sonsult-user">
+							<a href="">
+								<img src="../images/consult-user.gif" alt="" class="userpic">
+								<h4 class="username">6543383</h4>
+								<p class="user-degree">银牌会员</p>
+							</a>
+						</div>
+						<div class="eachconsult-content"><b>[商品咨询]</b><p>还能在便宜点吗?</p></div>
+						<div class="time">2014-03-07 17:41:41</div>
+						<div class="reply">嗨购网回复：<span class="reply-content">您好，现在已经是活动价格了</span></div>
+					</div>
+					<div class="each-consult clearfix">
+						<div class="sonsult-user">
+							<a href="">
+								<img src="../images/consult-user.gif" alt="" class="userpic">
+								<h4 class="username">6543383</h4>
+								<p class="user-degree">银牌会员</p>
+							</a>
+						</div>
+						<div class="eachconsult-content"><b>[商品咨询]</b><p>还能在便宜点吗?</p></div>
+						<div class="time">2014-03-07 17:41:41</div>
+						<div class="reply">嗨购网回复：<span class="reply-content">您好，现在已经是活动价格了</span></div>
+					</div>
+					<div class="each-consult  clearfix">
+						<div class="sonsult-user">
+							<a href="">
+								<img src="../images/consult-user.gif" alt="" class="userpic">
+								<h4 class="username">6543383</h4>
+								<p class="user-degree">银牌会员</p>
+							</a>
+						</div>
+						<div class="eachconsult-content"><b>[商品咨询]</b><p>还能在便宜点吗?</p></div>
+						<div class="time">2014-03-07 17:41:41</div>
+						<div class="reply">嗨购网回复：<span class="reply-content">您好，现在已经是活动价格了</span></div>
+						<div class="reply">嗨购网回复：<span class="reply-content">您好，现在已经是活动价格了</span></div>
+						<div class="reply">嗨购网回复：<span class="reply-content">您好，现在已经是活动价格了</span></div>
+						<div class="reply">嗨购网回复：<span class="reply-content">您好，现在已经是活动价格了</span></div>
+					</div>
+					<div class="each-consult  clearfix">
+						<div class="sonsult-user">
+							<a href="">
+								<img src="../images/consult-user.gif" alt="" class="userpic">
+								<h4 class="username">6543383</h4>
+								<p class="user-degree">银牌会员</p>
+							</a>
+						</div>
+						<div class="eachconsult-content"><b>[商品咨询]</b><p>还能在便宜点吗?</p></div>
+						<div class="time">2014-03-07 17:41:41</div>
+						<div class="reply">嗨购网回复：<span class="reply-content">您好，现在已经是活动价格了</span></div>
+					</div>
+					<div class="goto-pages">
+						<a href="" class="useless">上一页</a><a href="" class="cur">1</a><a href="">2</a>&nbsp;到第<input type="text" value="1">页<button>确定</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 页脚 -->
+	<div class="footer">
+		<p>
+			<a href="">嗨购简介 |</a>
+			<a href="">嗨购公告 |</a>
+			<a href="">招贤纳士 |</a>
+			<a href="">联系我们 |</a>
+			客服热线：400-675-1234
+		</p>
+		<p class="copyright">
+			Copyright &copy; 2006 - 2014 嗨购版权所有   京ICP备09037834号   京ICP证B1034-8373号   某市公安局XX分局备案编号：123456789123
+		</p>
+		<p class="certification">
+			<img src="../images/certification.png" alt="">
+			<img src="../images/certification.png" alt="">
+			<img src="../images/certification.png" alt="">
+			<img src="../images/certification.png" alt="">
+		</p>
+	</div>
+	<!-- 置顶按钮 -->
+	<div id="to_top"><a href="#header">顶</a></div>
+	<!-- 网站导航 -->
+	<div id="demo-list">
+		<h3>本站导航<span class="label"></span></h3>
+		<ul>
+			<li><a href="index.html">商城首页</a></li>
+			<li><a href="classification.html">商品分类</a></li>
+			<li><a href="sub-classify-page.html">单一类目</a></li>
+			<li><a href="detail-comments.html">商品详情</a></li>
+			<li><a href="deal-page.html">订单确认</a></li>
+			<li><a href="login.html">登录/注册</a></li>
+		</ul>
+	</div>
+	<script>
+		window.onload=function(){
+			var oHeader=document.getElementById('header');
+			var oTop=document.getElementById('top');
+			var oContent=document.getElementById('content');
+			var oSetfav=getByClass(oHeader,'setfav')[0];
+			var oInput=oTop.getElementsByTagName('input')[0];
+			var aComments=getByClass(oContent,'comments');
+			//点击收藏嗨购，弹出提示框
+			oSetfav.onclick=function(){
+				alert('请使用快捷键Ctrl+D收藏页面');
+			}
+
+			// 搜索输入框获取或失去焦点时的外发光样式
+			oInput.onfocus=function(){
+				this.className = 'focus' ;
+			}
+			oInput.onblur=function(){
+				this.className = '' ;
+			}
+
+			// 定义根据class获取dom节点的函数
+		 	function getByClass(oParent,clsName){
+				var aObj=oParent.getElementsByTagName('*');
+				var result=new Array();
+				for(var i=0;i<aObj.length;i++){
+					var aCls=aObj[i].className.split(' ');
+					var ex=false;
+					for(var j=0;j<aCls.length;j++){
+						if (aCls[j]==clsName) {
+							ex=true;
+						}
+					}
+					if(ex){
+						result.push(aObj[i]);
+					}
+				}
+				return result;
+			}
+		}
+		// 商品介绍、评价 切换
+		$(function(){
+			var intro = $(".intro-table");
+			var comments = $(".comments-content");
+			$('.main-intro').click(function(event) {
+				intro.show();
+				comments.hide();
+				$(this).addClass('active').siblings('div').removeClass('active');
+				return false;
+			});
+			$('.main-comments').click(function(event) {
+				intro.hide();
+				comments.show();
+				$(this).addClass('active').siblings('div').removeClass('active');
+				return false;
+			});
+			// 放大镜
+			$(".pic-wrap").smoothproducts();
+			// 样式和颜色
+			var color = $(".select-color li");
+			var style = $(".select-style li");
+			var curChar = $(".char-selected");
+			$('.char-select li').click(function() {
+				$(this).addClass('selected').siblings().removeClass('selected');
+				var char = color.filter('.selected').text()+" | "+style.filter('.selected').text();
+				curChar.text(char);
+			});
+			color.eq(0).click();//初始化
+			// 购买数量
+			var num = $(".select-num input");
+			var curNum = num.val();
+			var numLimit = $(".num-limit").text();
+			$(".select-num button").eq(0).click(function(event) {
+				if(curNum > 1 ){
+					curNum--;
+					num.val(curNum);
+				}
+			});
+			$(".select-num button").eq(1).click(function(event) {
+				if(curNum < numLimit ){
+					curNum++;
+					num.val(curNum);
+				}
+			});
+			// 弹窗
+			var shopList = '';
+			$("#tobuy").click(function(event) {
+				shopList = $('.info-title h1').text() +"<br/>"+ $(".char-selected").text() +" "+ $(".select-num input").val() + "台<br/>" + "总计：¥ " + parseInt($(".price").text())*parseInt($(".select-num input").val());
+				addBasket(shopList);
+				$('#higo-confirm').click(function(){
+		    	$('#higo-modal,#higo-modal-mask').remove();
+		    	$(".basket p").hide();
+		    	$('<li></li>').html(shopList).appendTo('.basket');
+		    	var shopNum = parseInt($('.shopping-car .right').text());
+		    	$('.shopping-car .right').text(++shopNum);
+		    });
+			});
+		})
+		// 弹窗
+		function pop(obj) {
+		  function createModal(obj) {
+		  	var m = '<div id="higo-modal-mask"></div><div id="higo-modal"><div id="higo-modal-title"></div><div id="higo-modal-content"></div><div id="higo-btn"><button id="higo-confirm">确认</button><button id="higo-cancel">取消</button></div></div>'
+		    $('body').append(m);
+		    $('#higo-modal').css({'width': obj.width + 'px', 'height': obj.height + 'px', 'margin-left': -(parseInt(obj.width) / 2) + 'px', 'margin-top': -(parseInt(obj.height) / 2) + 'px', 'background': obj.backgorund});
+		    $('#higo-modal-mask').css('display', 'block');
+		    $('#higo-modal-title').text(obj.title);
+		    $('#higo-modal-content').html(obj.content);
+		  }
+
+		  function modalEv() {
+		    $('#higo-cancel').click(function() {
+		      $('#higo-modal,#higo-modal-mask').remove();
+		    });
+		  }
+		  var newModal = obj;
+		  newModal.width = parseInt(obj.width) || 300;
+		  newModal.height = parseInt(obj.height) || 300;
+		  newModal.title = obj.title || '来自提示信息';
+		  newModal.content = obj.content || '这是一个提示信息';
+		  newModal.backgorund = obj.backgorund || '#fff';
+		  createModal(newModal);
+		  modalEv();
+		}
+		function addBasket(con){
+			pop({
+				width:500,//提示窗口的宽度
+				height:200,//提示窗口的高度
+				title:'恭喜，加入购物车成功！',//提示窗口的标题
+				content:'<p style="font-weight:bold;line-height:20px;">您已选购:</p><p style="display:inline-block;padding:10px 0 10px 20px;">'+ con +'</p>'//提示窗口的内容
+			});
+		}
+	</script>
+	<!-- 地址选择 -->
+	<script src="../js/area.js"></script>
+	<script src="../js/area-select.js"></script>
+</body>
+</html>
